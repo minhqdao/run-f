@@ -30,11 +30,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: fpm test
 
-  msys2:
+  mingw64:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        msystem: [msys, ucrt64, mingw64, clang64]
     defaults:
       run:
         shell: msys2 {0}
@@ -42,10 +39,25 @@ jobs:
       - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
         with:
-          msystem: ${{ matrix.msystem }}
+          msystem: mingw64
           install: >-
             mingw-w64-x86_64-gcc-fortran
             mingw-w64-x86_64-fpm
+      - run: fpm test
+
+  ucrt64:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: ucrt64
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc-fortran
+            mingw-w64-ucrt-x86_64-fpm
       - run: fpm test
 
   format:
