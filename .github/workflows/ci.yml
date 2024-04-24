@@ -41,13 +41,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
-      - uses: fortran-lang/setup-fortran@v1
         with:
-          compiler: gcc
-          version: 13
-      - uses: fortran-lang/setup-fpm@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          msystem: ${{ matrix.msystem }}
+          install: >-
+            mingw-w64-x86_64-gcc-fortran
+            mingw-w64-x86_64-fpm
       - run: fpm test
 
   format:
