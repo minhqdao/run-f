@@ -1,0 +1,9 @@
+name = "run-f"
+version = "0.1.0"
+license = "MIT"
+author = "Minh Dao"
+maintainer = "hello@minhdao.de"
+copyright = "Copyright 2024, Minh Dao"
+
+[build]
+module-naming = true
