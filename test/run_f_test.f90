@@ -18,11 +18,11 @@ program run_f_test
   str = run('whoami', has_error)
   if (str == '') call fail('whoami has no output.')
   if (has_error) call fail('whoami failed.')
-  
+
   str = run('whoami', has_error, print_cmd=.false.)
   if (str == '') call fail('whoami has no output (no print).')
   if (has_error) call fail('whoami failed.')
-  
+
   str = run('whoami', has_error, print_cmd=.true.)
   if (str == '') call fail('whoami has no output (with print).')
   if (has_error) call fail('whoami failed.')

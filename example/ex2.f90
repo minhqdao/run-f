@@ -12,5 +12,4 @@ program ex_2
     print *, 'Error executing command: ', command
     stop 1
   end if
-
 end
