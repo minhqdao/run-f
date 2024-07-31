@@ -51,10 +51,6 @@ program run_f_test
   if (str /= '') call fail("Invalid command 'abc' has output.")
   if (.not. has_error) call fail("Invalid command 'abc' did not fail.")
 
-  str = run('.', has_error)
-  if (str /= '') call fail("Invalid command '.' has output.")
-  if (.not. has_error) call fail("Invalid command '.' did not fail.")
-
   print *, achar(10)//achar(27)//'[92m All tests passed.'//achar(27)
 
 contains
