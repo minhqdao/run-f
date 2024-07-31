@@ -90,6 +90,7 @@ contains
       str = str//c2f(line)
     end do
 
+    istat = 0
     istat = pclose(handle)
     if (present(has_error)) has_error = istat /= 0
   end
