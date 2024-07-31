@@ -8,11 +8,11 @@ program run_f_test
   str = run('')
   if (str /= '') call fail('Empty command has output (no error handling).')
 
-  str = run('abcdefgh')
-  if (str /= '') call fail('Invalid command has output (no error handling).')
+  str = run('abc')
+  if (str /= '') call fail("Invalid command 'abc' has output (no error handling).")
 
   str = run('.')
-  if (str /= '') call fail('Invalid command has output (no error handling).')
+  if (str /= '') call fail("Invalid command '.' has output (no error handling).")
 
   str = run('', has_error)
   if (str /= '') call fail('Empty command has output.')
@@ -47,13 +47,13 @@ program run_f_test
   if (str /= '') call fail('whoami with invalid argument has output.')
   if (.not. has_error) call fail('whoami with invalid argument did not fail.')
 
-  str = run('abcdefg', has_error)
-  if (str /= '') call fail('Invalid command has output.')
-  if (.not. has_error) call fail('Invalid command did not fail.')
+  str = run('abc', has_error)
+  if (str /= '') call fail("Invalid command 'abc' has output.")
+  if (.not. has_error) call fail("Invalid command 'abc' did not fail.")
 
   str = run('.', has_error)
-  if (str /= '') call fail('Invalid command has output.')
-  if (.not. has_error) call fail('Invalid command did not fail.')
+  if (str /= '') call fail("Invalid command '.' has output.")
+  if (.not. has_error) call fail("Invalid command '.' did not fail.")
 
   print *, achar(10)//achar(27)//'[92m All tests passed.'//achar(27)
 
