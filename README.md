@@ -1,7 +1,7 @@
 # run-f
 
 [![License](https://img.shields.io/github/license/minhqdao/run-f?label=License&color=teal)](https://opensource.org/licenses/mit)
-[![Release](https://img.shields.io/github/release/minhqdao/version-f?label=Release)](https://github.com/minhqdao/run-f/releases)
+[![Release](https://img.shields.io/github/release/minhqdao/run-f?label=Release)](https://github.com/minhqdao/run-f/releases)
 [![CI](https://github.com/minhqdao/run-f/actions/workflows/ci.yml/badge.svg)](https://github.com/minhqdao/run-f/actions/workflows/ci.yml)
 
 This Fortran library allows you to execute a command in the command line and receive the result as a string without the need for a temporary file.
