@@ -30,7 +30,7 @@ logical :: has_error
 
 output = run("whoami", has_error)
 if (has_error) then
-  print *, "Handle error gracefully."; stop 1
+  print *, "Handle gracefully."; stop 1
 end if
 ```
 
@@ -42,6 +42,8 @@ character(:), allocatable :: output
 output = run("abcxyz")
 print *, "This line will be executed."
 ```
+
+Be careful with different shell behavior and directives. For example, executing "." will not return an error on Ubuntu (bash) but it will do so on macOS (zsh).
 
 ### Print Command
 
