@@ -8,12 +8,24 @@ program run_f_test
   str = run('')
   if (str /= '') call fail('Empty command has output (no error handling).')
 
+  str = run('abcdefgh')
+  if (str /= '') call fail('Invalid command has output (no error handling).')
+
+  str = run('.')
+  if (str /= '') call fail('Invalid command has output (no error handling).')
+
   str = run('', has_error)
   if (str /= '') call fail('Empty command has output.')
   if (has_error) call fail('Empty command has error.')
 
   str = run('whoami')
   if (str == '') call fail('whoami has no output (no error handling).')
+
+  str = run('whoami -x')
+  if (str /= '') call fail('whoami with invalid option has output (no error handling).')
+
+  str = run('whoami xyz')
+  if (str /= '') call fail('whoami with invalid argument has output (no error handling).')
 
   str = run('whoami', has_error)
   if (str == '') call fail('whoami has no output.')
@@ -28,12 +40,19 @@ program run_f_test
   if (has_error) call fail('whoami failed.')
 
   str = run('whoami -x', has_error)
+  if (str /= '') call fail('whoami with invalid option has output.')
   if (.not. has_error) call fail('whoami with invalid option did not fail.')
 
   str = run('whoami xyz', has_error)
+  if (str /= '') call fail('whoami with invalid argument has output.')
   if (.not. has_error) call fail('whoami with invalid argument did not fail.')
 
   str = run('abcdefg', has_error)
+  if (str /= '') call fail('Invalid command has output.')
+  if (.not. has_error) call fail('Invalid command did not fail.')
+
+  str = run('.', has_error)
+  if (str /= '') call fail('Invalid command has output.')
   if (.not. has_error) call fail('Invalid command did not fail.')
 
   print *, achar(10)//achar(27)//'[92m All tests passed.'//achar(27)
