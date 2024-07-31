@@ -64,7 +64,7 @@ minh
 
 ### fpm
 
-Using [fpm](https://fpm.fortran-lang.org/en/index.html), you can simply add this package as a dependency to your `fpm.toml` file:
+Using [fpm](https://fpm.fortran-lang.org), you can simply add this package as a dependency to your `fpm.toml` file:
 
 ```toml
 [dependencies]
