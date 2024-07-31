@@ -30,6 +30,9 @@ jobs:
         with:
           compiler: ${{ matrix.toolchain.compiler }}
           version: ${{ matrix.toolchain.version }}
+      - name: macos workaround
+        if: runner.os == 'macos'
+        run: brew install gcc@10
       - uses: fortran-lang/setup-fpm@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
