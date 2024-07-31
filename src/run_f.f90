@@ -50,6 +50,9 @@ contains
   end
 
   !> Run a command in the command line and return the result as a string.
+  !>
+  !> If the command results in an error, and no error flag is provided, the
+  !> the error will be ignored and the program will keep executing.
   function run(cmd, has_error, print_cmd) result(str)
     !> The command to run in the command line.
     character(len=*), intent(in) :: cmd
@@ -70,7 +73,7 @@ contains
     character(kind=c_char, len=buffer_length) :: line
 
     if (present(print_cmd)) then
-      if (print_cmd) print *, 'Running command: ', cmd
+      if (print_cmd) print *, "Running command: '", cmd, "'"
     end if
 
     if (present(has_error)) has_error = .false.

@@ -30,7 +30,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: fpm test
 
-  mingw64:
+  test-mingw64-gcc:
     runs-on: windows-latest
     defaults:
       run:
@@ -45,7 +45,7 @@ jobs:
             mingw-w64-x86_64-fpm
       - run: fpm test
 
-  ucrt64:
+  test-ucrt64-gcc:
     runs-on: windows-latest
     defaults:
       run:

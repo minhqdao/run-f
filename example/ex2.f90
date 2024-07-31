@@ -9,7 +9,6 @@ program ex_2
   output = run(command, has_error, print_cmd=.true.)
 
   if (has_error) then
-    print *, 'Error executing command: ', command
-    stop 1
+    print *, "Error executing command: '", command, "'"; stop 1
   end if
 end

@@ -1,8 +1,8 @@
 # run-f
 
-This simple Fortran library allows you to execute a command in the command line and save its result as a string without the need for a temporary file.
+This Fortran library allows you to execute a command in the command line and receive the result as a string without the need for a temporary file.
 
-It was inspired by the work of [Jacob Williams](https://degenerateconic.com/fortran-c-interoperability.html) and uses `iso_c_binding` to call `popen`, `fgets` and `pclose` from the C standard library.
+It was inspired by [this article](https://degenerateconic.com/fortran-c-interoperability.html) and uses `iso_c_binding` to call `popen`, `fgets` and `pclose` from the C standard library.
 
 ## Usage
 
@@ -22,23 +22,42 @@ output = run("whoami")
 
 ### Error Handling
 
-### Print Command
+Use the optional `has_error` argument to check if an error occurred while executing the command:
 
-### Ignore Errors
+```fortran
+character(len=:), allocatable :: output
+logical :: has_error
 
-You can also use the `optional` arguments to add error handling or print the command to the console before executing it:
+output = run("whoami", has_error)
+if (has_error) then
+  print *, "Handle error gracefully."; stop 1
+end if
+```
+
+If you don't provide an error handler and something goes wrong while executing the command, the program will continue:
 
 ```fortran
 character(:), allocatable :: output
-character(*), parameter :: command = "whoami"
-logical :: has_error
 
-output = run(command, has_error, print_cmd=.true.)
+output = run("abcxyz")
+print *, "This line will be executed."
+```
 
-if (has_error) then
-  print *, "An error occurred while executing the command: ", command
-  stop 1
-end if
+### Print Command
+
+You can also print the command before executing it by setting the optional `print_cmd` argument to `.true.`:
+
+```fortran
+character(len=:), allocatable :: output
+
+output = run("whoami", print_cmd=.true.)
+print *, output
+```
+
+Output:
+```
+Running command: 'whoami'
+minh
 ```
 
 ## Install
@@ -61,7 +80,7 @@ Then import the `run_f` module into your Fortran code:
 use run_f, only: run
 ```
 
-Run `fpm build` to download the dependency.
+Run `fpm build` to download and compile the dependency.
 
 ## Tests
 
