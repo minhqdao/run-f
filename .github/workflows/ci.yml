@@ -42,7 +42,11 @@ jobs:
   test-msys2:
     strategy:
       matrix:
-        msystem: [mingw64, ucrt64]
+        include:
+          [
+            { msystem: mingw64, build_variant: "" },
+            { msystem: ucrt64, build_variant: "-ucrt64" },
+          ]
     runs-on: windows-latest
     defaults:
       run:
@@ -53,8 +57,8 @@ jobs:
         with:
           msystem: ${{ matrix.msystem }}
           install: >-
-            mingw-w64-x86_64-gcc-fortran
-            mingw-w64-x86_64-fpm
+            mingw-w64${{ matrix.build_variant }}-x86_64-gcc-fortran
+            mingw-w64${{ matrix.build_variant }}-x86_64-gcc
       - run: fpm test
 
   format:
