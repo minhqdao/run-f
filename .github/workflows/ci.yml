@@ -45,7 +45,7 @@ jobs:
         include:
           [
             { msystem: mingw64, build_variant: "" },
-            { msystem: ucrt64, build_variant: "-ucrt64" },
+            { msystem: ucrt64, build_variant: "-ucrt" },
           ]
     runs-on: windows-latest
     defaults:
