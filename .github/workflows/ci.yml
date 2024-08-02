@@ -58,7 +58,7 @@ jobs:
           msystem: ${{ matrix.msystem }}
           install: >-
             mingw-w64${{ matrix.build_variant }}-x86_64-gcc-fortran
-            mingw-w64${{ matrix.build_variant }}-x86_64-gcc
+            mingw-w64${{ matrix.build_variant }}-x86_64-fpm
       - run: fpm test
 
   format:
